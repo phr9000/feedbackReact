@@ -1,18 +1,21 @@
-import Card from './shared/card'
-import { useState } from "react"
+import {FaTimes} from 'react-icons/fa'
+import PropTypes from 'prop-types'
+import Card from './shared/Card'
 
-function FeedbackItem() {
-  const [rating, setRating] = useState(7);
-  const [text, setText] = useState('this is an example of a feeback item')
-
-
-
+function FeedbackItem({item, handleDelete}) {
   return (
     <Card>
-        <div className="num-display">{rating}</div>
-        <div className="text-display">{text}</div>
+        <div className="num-display">{item.rating}</div>
+        <button onClick={() => handleDelete(item.id)} className="close">
+          <FaTimes color='purple'/>
+        </button>
+        <div className="text-display">{item.text}</div>
     </Card>
   )
+}
+
+FeedbackItem.propTypes = {
+  item: PropTypes.object.isRequired
 }
 
 export default FeedbackItem
